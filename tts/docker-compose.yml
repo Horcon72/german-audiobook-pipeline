@@ -1,0 +1,122 @@
+###############################################################################
+# Qwen3-TTS Audiobook Production Pipeline — docker-compose.yml
+#
+# Usage:
+#   1. Set HF_TOKEN below (or export HF_TOKEN=... in your shell)
+#   2. Place reference WAV at ./voices/CB.wav (+ optional ./voices/CB.txt)
+#   3. Place EPUB / TXT input at ./input/
+#   4.  docker compose run qwen-tts python audiobook.py /input/book.epub
+#      or  docker compose run qwen-tts python test_tts.py
+#
+# Volumes:
+#   ./models   → /models    HuggingFace model cache (persists across rebuilds)
+#   ./voices   → /voices    Reference audio, transcripts, cached voice prompt
+#   ./input    → /input     Source EPUB / plaintext files
+#   ./output   → /output    Generated WAV files (chapter + full book)
+###############################################################################
+version: "3.9"
+
+services:
+  qwen-tts:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      args:
+        # SM120 = Blackwell RTX 50xx series
+        TORCH_CUDA_ARCH_LIST: "12.0"
+    image: qwen3-tts:latest
+    runtime: nvidia
+
+    environment:
+      # ── HuggingFace authentication ─────────────────────────────────────────
+      # Replace with your token or set HF_TOKEN in the shell before compose up.
+      # NEVER commit a real token. Use `docker compose --env-file .env up` instead.
+      - HF_TOKEN=DEIN_HUGGINGFACE_TOKEN_HIER
+
+      # ── Model ──────────────────────────────────────────────────────────────
+      - MODEL_ID=Qwen/Qwen3-TTS-12Hz-1.7B-Base
+      - MODEL_CACHE=/models
+
+      # ── Voice / Speaker prompt ─────────────────────────────────────────────
+      # REFERENCE_WAV   Path to the reference speaker WAV inside the container.
+      - REFERENCE_WAV=/voices/CB.wav
+      # REFERENCE_TEXT  Path to the reference transcript (optional).
+      #                 Leave empty / unset to force X_VECTOR_ONLY=1 automatically.
+      - REFERENCE_TEXT=/voices/CB.txt
+      # VOICE_PROMPT_CACHE  Safetensors file for the pre-computed voice prompt.
+      #                 Created on first run, loaded directly on all subsequent runs.
+      - VOICE_PROMPT_CACHE=/voices/CB_prompt.safetensors
+
+      # ── Inference mode ─────────────────────────────────────────────────────
+      # X_VECTOR_ONLY   0 = ICL mode (higher quality, reference transcript required)
+      #                 1 = x-vector only (faster, no transcript needed)
+      - X_VECTOR_ONLY=0
+
+      # ── Performance knobs ──────────────────────────────────────────────────
+      # CONTEXT_SENTENCES  Number of previously synthesised sentences fed back as
+      #                    prosodic ICL context.  0 = no context.
+      - CONTEXT_SENTENCES=3
+      # TOKEN_BUDGET       Controls batch size dynamically via text-token counting.
+      #                    Each batch: max(tokens_in_batch) × batch_size ≤ TOKEN_BUDGET.
+      - TOKEN_BUDGET=800
+      # MAX_NEW_TOKENS_FACTOR  Audio-token cap = max_text_tokens_in_batch × factor.
+      - MAX_NEW_TOKENS_FACTOR=10
+      # SEGMENT_MODE       paragraph = whole paragraphs as TTS units (default)
+      #                    sentence  = NLTK sentence tokenisation (old behaviour)
+      - SEGMENT_MODE=paragraph
+      # PARAGRAPH_MAX_CHARS  Max chars per paragraph before splitting at last .?!
+      - PARAGRAPH_MAX_CHARS=500
+      # CROSSFADE_MS       Crossfade length when joining paragraph audio chunks.
+      #                    0 = insert silence gap instead.
+      - CROSSFADE_MS=20
+      # PARAGRAPH_MODE     1 = autoregressive synthesis (batch=1, max prosody continuity).
+      - PARAGRAPH_MODE=0
+      # VOICE_DESIGN_INSTRUCT  Natural-language voice description for VoiceDesign mode.
+      #                    Set this to switch from voice-clone to VoiceDesign.
+      #                    Example: "Male narrator, elderly, slightly raspy voice, amused tone"
+      #                    Leave empty (default) to use voice-clone mode with CB.wav.
+      - VOICE_DESIGN_INSTRUCT=
+      # VOICE_DESIGN_MODEL_ID  HuggingFace model ID for the VoiceDesign model.
+      - VOICE_DESIGN_MODEL_ID=Qwen/Qwen3-TTS-12Hz-1.7B-VoiceDesign
+      # VOICE_DESIGN_CACHE  Path prefix for saving VoiceDesign profile (.json + .wav).
+      - VOICE_DESIGN_CACHE=/voices/voice_design_profile
+      # USE_TORCH_COMPILE  1 = enable torch.compile().
+      #                    Currently unstable on SM120 (Blackwell); keep at 0.
+      - USE_TORCH_COMPILE=0
+
+      # ── Language ───────────────────────────────────────────────────────────
+      - LANGUAGE=German
+
+      # ── GPU / CUDA ─────────────────────────────────────────────────────────
+      - TORCH_CUDA_ARCH_LIST=12.0
+      - CUDA_VISIBLE_DEVICES=0
+      - PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True
+
+      # ── HuggingFace Hub transfer acceleration ──────────────────────────────
+      - HF_HUB_ENABLE_HF_TRANSFER=1
+
+    volumes:
+      - ./models:/models
+      - ./voices:/voices
+      - ./input:/input
+      - ./output:/output
+
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              count: 1
+              capabilities: [gpu]
+
+    # Large shared-memory segment for PyTorch DataLoader workers
+    shm_size: "2g"
+
+    ulimits:
+      memlock:
+        soft: -1
+        hard: -1
+
+    # Default command — override on the command line as needed:
+    #   docker compose run qwen-tts python audiobook.py /input/book.epub
+    command: ["python", "test_tts.py"]

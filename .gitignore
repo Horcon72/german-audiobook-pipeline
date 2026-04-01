@@ -1,0 +1,8 @@
+__pycache__/
+*.pyc
+.env
+
+# Private voice reference files (nicht ins Repository einchecken)
+tts/voices/CB.wav
+tts/voices/CB.txt
+tts/voices/CB_prompt.safetensors

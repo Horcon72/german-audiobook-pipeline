@@ -1,0 +1,231 @@
+[
+  {
+    "id": "bdb3dff9-ba0d-4f03-9b46-0764e686a3c1",
+    "name": "Zeilen ohne Satzzeichen",
+    "kategorie": "Satzzeichen",
+    "beschreibung": "Endet eine Zeile nicht mit .!?:,;… und folgt ein Zeilenumbruch, wird ein Punkt ans Ende gesetzt. Gilt für Titel, Kapitelüberschriften, Aufzählungen.",
+    "aktiv": true,
+    "prioritaet": 1,
+    "vorverarbeitung_code": true,
+    "beispiele": [
+      {
+        "input": "Kapitel 2: Der 3-Uhr-Morgens-Marathon",
+        "output": "Kapitel 2: Der 3-Uhr-Morgens-Marathon."
+      },
+      {
+        "input": "Das Manifest der Schnurr-Diktatur: Warum deine Katze dich eigentlich nur duldet",
+        "output": "Das Manifest der Schnurr-Diktatur: Warum deine Katze dich eigentlich nur duldet."
+      }
+    ],
+    "anmerkungen": ""
+  },
+  {
+    "id": "9cf9813b-ac46-4e8c-aed3-983574770c77",
+    "name": "Kardinalzahlen und Prozent",
+    "kategorie": "Zahlen",
+    "beschreibung": "Zahlen ausschreiben, Kasus grammatikalisch korrekt. 'zu 1 %' → 'zu einem Prozent', '90 %' → 'neunzig Prozent'.",
+    "aktiv": true,
+    "prioritaet": 2,
+    "beispiele": [
+      {
+        "input": "zu 1 %",
+        "output": "zu einem Prozent"
+      },
+      {
+        "input": "90 %",
+        "output": "neunzig Prozent"
+      },
+      {
+        "input": "5 %",
+        "output": "fünf Prozent"
+      },
+      {
+        "input": "100 %",
+        "output": "hundert Prozent"
+      }
+    ],
+    "anmerkungen": "Grammatikalischen Kasus aus dem Kontext ableiten."
+  },
+  {
+    "id": "0da25a97-1ab0-43a8-b58b-31be450b1f11",
+    "name": "Datumsangaben und Jahreszahlen",
+    "kategorie": "Datumsangaben",
+    "beschreibung": "Kasus aus Kontext ableiten. 'am 12. Januar' → 'am zwölften Januar' (Dativ), 'der 12. Januar' → 'der zwölfte Januar' (Nominativ). Jahreszahlen vor 2000 als Hunderterpaare: '1984' → 'neunzehnhundertvierundachtzig'. Ab 2000 als Tausender: '2025' → 'zweitausendfünfundzwanzig'.",
+    "aktiv": true,
+    "prioritaet": 3,
+    "beispiele": [
+      {
+        "input": "am 12. Januar",
+        "output": "am zwölften Januar"
+      },
+      {
+        "input": "der 12. Januar",
+        "output": "der zwölfte Januar"
+      },
+      {
+        "input": "den 5. März",
+        "output": "den fünften März"
+      },
+      {
+        "input": "des 3. April",
+        "output": "des dritten April"
+      },
+      {
+        "input": "1984",
+        "output": "neunzehnhundertvierundachtzig"
+      },
+      {
+        "input": "2025",
+        "output": "zweitausendfünfundzwanzig"
+      }
+    ],
+    "anmerkungen": "Kasus-Signalwörter: am/beim/seit/zum → Dativ, den → Akkusativ, der/die/das → Nominativ, des → Genitiv."
+  },
+  {
+    "id": "4c17db2b-032d-4d27-a65f-4d15d4f1c40d",
+    "name": "Uhrzeiten",
+    "kategorie": "Zahlen",
+    "beschreibung": "Uhrzeiten ausschreiben: '03:17 Uhr' → 'drei Uhr siebzehn'.",
+    "aktiv": true,
+    "prioritaet": 4,
+    "beispiele": [
+      {
+        "input": "03:17 Uhr",
+        "output": "drei Uhr siebzehn"
+      },
+      {
+        "input": "14:30 Uhr",
+        "output": "vierzehn Uhr dreißig"
+      },
+      {
+        "input": "00:00 Uhr",
+        "output": "null Uhr null"
+      },
+      {
+        "input": "12:00 Uhr",
+        "output": "zwölf Uhr null"
+      }
+    ],
+    "anmerkungen": ""
+  },
+  {
+    "id": "37512f3e-5c23-4f12-a827-13f69d5e18f8",
+    "name": "Formeln",
+    "kategorie": "Abkürzungen",
+    "beschreibung": "Mathematische und physikalische Formeln ausschreiben. 'g≈9,81m/s²' → 'g ungefähr neun Komma acht eins Meter pro Sekunde zum Quadrat'.",
+    "aktiv": true,
+    "prioritaet": 5,
+    "beispiele": [
+      {
+        "input": "g≈9,81m/s²",
+        "output": "g ungefähr neun Komma acht eins Meter pro Sekunde zum Quadrat"
+      }
+    ],
+    "anmerkungen": ""
+  },
+  {
+    "id": "718950c4-859f-4190-8201-984b5744d097",
+    "name": "Abkürzungen",
+    "kategorie": "Abkürzungen",
+    "beschreibung": "Gebräuchliche Abkürzungen ausschreiben. Buchstabierte Akronyme mit Bindestrichen trennen (UN → U-N, USA → U-S-A, ADAC → A-D-A-C). Aussprechbare Akronyme als Wort belassen (NASA → Nasa, LASER → Laser). Kriterium: Wird im allgemeinen Sprachgebrauch als zusammenhängendes Wort gesprochen. Im Zweifel buchstabieren.",
+    "aktiv": true,
+    "prioritaet": 6,
+    "beispiele": [
+      {
+        "input": "z.B.",
+        "output": "zum Beispiel"
+      },
+      {
+        "input": "d.h.",
+        "output": "das heißt"
+      },
+      {
+        "input": "usw.",
+        "output": "und so weiter"
+      },
+      {
+        "input": "bzw.",
+        "output": "beziehungsweise"
+      },
+      {
+        "input": "ggf.",
+        "output": "gegebenenfalls"
+      },
+      {
+        "input": "ca.",
+        "output": "circa"
+      },
+      {
+        "input": "d.",
+        "output": "dem"
+      },
+      {
+        "input": "UN",
+        "output": "U-N"
+      },
+      {
+        "input": "USA",
+        "output": "U-S-A"
+      },
+      {
+        "input": "ADAC",
+        "output": "A-D-A-C"
+      },
+      {
+        "input": "NASA",
+        "output": "Nasa"
+      },
+      {
+        "input": "LASER",
+        "output": "Laser"
+      }
+    ],
+    "anmerkungen": "d. nur im Datumskontext als 'dem' auflösen, z.B. 'am 3. d. M.' → 'am dritten dieses Monats'."
+  },
+  {
+    "id": "17c5cb35-be5b-4ed7-813a-6fa62e13c299",
+    "name": "Anführungszeichen-Parität",
+    "kategorie": "Sonderzeichen",
+    "beschreibung": "Prüfen ob öffnende und schließende Anführungszeichen paarweise vorhanden sind. Fehlendes Gegenstück korrigieren oder entfernen. Gedankenstriche, Kommas und korrekte Anführungszeichen niemals verändern.",
+    "aktiv": true,
+    "prioritaet": 7,
+    "beispiele": [
+      {
+        "input": "Er sagte: „Hallo.",
+        "output": "Er sagte: „Hallo.“"
+      },
+      {
+        "input": "Das ist \"falsch",
+        "output": "Das ist \"falsch\""
+      }
+    ],
+    "anmerkungen": "Nur fehlerhafte oder unpaarige Anführungszeichen korrigieren. Korrekte deutsche typografische Anführungszeichen „ und “ nicht verändern."
+  },
+  {
+    "id": "fe212fac-bb1c-4a82-bde4-921bd4f7bcaf",
+    "name": "Steuerzeichen und Sonderzeichen",
+    "kategorie": "Sonderzeichen",
+    "beschreibung": "Emojis und nicht-druckbare Steuerzeichen (außer \\n, \\t) entfernen. Aufzählungszeichen (•, ▪, ◦) und Bindestrich - am Zeilenanfang als Aufzählungszeichen entfernen.",
+    "aktiv": true,
+    "prioritaet": 8,
+    "beispiele": [
+      {
+        "input": "• Erster Punkt",
+        "output": "Erster Punkt"
+      },
+      {
+        "input": "▪ Zweiter Punkt",
+        "output": "Zweiter Punkt"
+      },
+      {
+        "input": "- Dritter Punkt am Zeilenanfang",
+        "output": "Dritter Punkt am Zeilenanfang"
+      },
+      {
+        "input": "Toll! 😀",
+        "output": "Toll!"
+      }
+    ],
+    "anmerkungen": "Nur Steuerzeichen und Sonderzeichen entfernen, die für TTS irrelevant oder störend sind. Zeilenumbrüche (\\n) und Tabulatoren (\\t) beibehalten."
+  }
+]

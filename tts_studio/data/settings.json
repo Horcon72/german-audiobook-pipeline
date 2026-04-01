@@ -1,0 +1,18 @@
+{
+  "ollama_url": "http://localhost:11434",
+  "default_model": "gemma3:12b",
+  "default_chunk_size": 2500,
+  "recent_files": [
+    "F:/Beispiel.txt",
+    "/file7.txt",
+    "/file6.txt",
+    "/file5.txt",
+    "/file4.txt"
+  ],
+  "cache_dir": "",
+  "output_formats": [
+    "mp3"
+  ],
+  "tts_output_dir": "",
+  "compose_file": "F:\\german-audiobook-pipeline\\tts\\docker-compose.yml"
+}
