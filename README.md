@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="tts_studio/screenshots/icon.png" width="200" alt="German Audiobook Pipeline Logo">
+  <img src="./tts_studio/screenshots/icon.png" width="200" alt="German Audiobook Pipeline Logo">
 </p>
 
 # German Audiobook Pipeline
@@ -46,12 +46,19 @@ Ein Open-Source-Projekt für automatisierte Hörbuchproduktion (EPUB/TXT → WAV
 
 Die folgenden Screenshots zeigen die wichtigsten Ansichten von TTS Studio:
 
+- `tts_studio/screenshots/icon.png`: Project-Icon
+- `tts_studio/screenshots/gui_main.png`: Textbereinigung / OCR-Korrektur
+- `tts_studio/screenshots/gui_tts.png`: TTS-Ausgabe-Konfiguration und Start
+
 <p align="center">
-  <img src="tts_studio/screenshots/gui_main.png" width="900" alt="GUI Screenshot">
+  <img src="tts_studio/screenshots/gui_main.png" width="900" alt="GUI Textkorrektur">
 </p>
 
-> Hinweis: Die Bilddateien sind nicht automatisch enthalten. Bitte in `tts_studio/screenshots/` ablegen und ggf. unter Versionskontrolle aufnehmen.
+<p align="center">
+  <img src="tts_studio/screenshots/gui_tts.png" width="900" alt="GUI TTS Ausgabe">
+</p>
 
+> Hinweis: Die Bilddateien sind in `tts_studio/screenshots/` hinterlegt und sollten zusammen mit dieser README im Repository liegen (oder lokal bereitgestellt werden).
 ## �🛠️ Systemanforderungen
 
 - Windows/Linux, x86_64 oder ähnliche
