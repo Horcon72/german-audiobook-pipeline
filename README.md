@@ -1,3 +1,7 @@
+<p align="center">
+  <img src="tts_studio/screenshots/icon.png" width="200" alt="German Audiobook Pipeline Logo">
+</p>
+
 # German Audiobook Pipeline
 
 **Qwen3-TTS Audiobook Production + TTS Studio GUI**
@@ -42,13 +46,9 @@ Ein Open-Source-Projekt für automatisierte Hörbuchproduktion (EPUB/TXT → WAV
 
 Die folgenden Screenshots zeigen die wichtigsten Ansichten von TTS Studio:
 
-- `tts_studio/screenshots/ui_text_correction.png`: Textkorrektur-Oberfläche
-- `tts_studio/screenshots/ui_tts_output.png`: TTS-Ausgabe-Dialog
-
-```markdown
-![TTS Studio – Textkorrektur](tts_studio/screenshots/ui_text_correction.png)
-![TTS Studio – TTS-Ausgabe](tts_studio/screenshots/ui_tts_output.png)
-```
+<p align="center">
+  <img src="tts_studio/screenshots/gui_main.png" width="900" alt="GUI Screenshot">
+</p>
 
 > Hinweis: Die Bilddateien sind nicht automatisch enthalten. Bitte in `tts_studio/screenshots/` ablegen und ggf. unter Versionskontrolle aufnehmen.
 
