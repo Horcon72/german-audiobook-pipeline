@@ -83,7 +83,7 @@ Dieses Projekt verfolgt konsequent einen Local-First-Ansatz. Dies hat sowohl tec
 ### 1) Clone
 
 ```bash
-git clone https://github.com/<dein-repo>/german-audiobook-pipeline.git
+git clone https://github.com/Horcon72/german-audiobook-pipeline.git
 cd german-audiobook-pipeline
 ```
 
