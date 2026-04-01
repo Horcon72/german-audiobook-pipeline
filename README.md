@@ -58,7 +58,7 @@ Die folgenden Screenshots zeigen die wichtigsten Ansichten von TTS Studio:
   <img src="tts_studio/screenshots/gui_tts.png" width="900" alt="GUI TTS Ausgabe">
 </p>
 
-> Hinweis: Die Bilddateien sind in `tts_studio/screenshots/` hinterlegt und sollten zusammen mit dieser README im Repository liegen (oder lokal bereitgestellt werden).
+
 ## �🛠️ Systemanforderungen
 
 - Windows/Linux, x86_64 oder ähnliche
